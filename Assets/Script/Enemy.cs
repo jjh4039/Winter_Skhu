@@ -46,12 +46,12 @@ public class Enemy : MonoBehaviour
             Destroy(bullet);
 
             // 피격 처리
-            if (health > expectDamage)
+            if (health > expectDamage) // 일반 피격
             {
                 health -= expectDamage;
                 StartCoroutine(KnockBack());
             }
-            else
+            else // 사망  
             {
                 health = 0;
                 isLive = false;
