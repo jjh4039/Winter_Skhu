@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     public Animator anim;
     public GameObject bullet;
 
+    [Header("Player Info")]
+    public int atk;
+
     void Update()
     {
         moveLR = Input.GetAxis("Horizontal");
@@ -18,12 +21,12 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Instantiate(bullet, transform.position + new Vector3(0f, -0.2f, 0), transform.rotation);
+            Instantiate(bullet, transform.position + new Vector3(0f, -0.35f, 0), transform.rotation);
         }
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
         {
-            rigid.AddForce(new Vector2(0, 5.0f), ForceMode2D.Impulse);
+            rigid.AddForce(new Vector2(0, 6.0f), ForceMode2D.Impulse);
             anim.SetBool("isJump", true);
         }
         else
