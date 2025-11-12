@@ -121,8 +121,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.000000005421847, y: 0.045481753}
-  m_Size: {x: 1.6666673, y: 0.5750862}
+  m_Offset: {x: -0.111127056, y: 0.04270343}
+  m_Size: {x: 1.4444182, y: 0.4028425}
   m_Direction: 1
 --- !u!114 &6449672069741187111
 MonoBehaviour:
@@ -137,3 +137,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigid: {fileID: 0}
+  bulletDamage: 0
+  hitParticlePrefab: {fileID: 6409765824655308698, guid: c28bd05f317d40549bb7ed4955afeb2d, type: 3}

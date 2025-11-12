@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public enum EnemyName { IceBlock }
     public Transform player;
     public Animator anim;
+    
 
     [Header ("Enemy Info")]
     [SerializeField] EnemyName enemyName;
@@ -38,12 +39,18 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Bullet"))
+        if (collision.CompareTag("Bullet") && isLive)
         {
             // 접촉 총알 처리
             GameObject bullet = collision.gameObject;
-            int expectDamage = bullet.GetComponent<Bullet>().bulletDamage;
+            Bullet script = bullet.GetComponent<Bullet>();
+            int expectDamage = script.bulletDamage;
+            script.Hit();
+            
             Destroy(bullet);
+            
+
+            
 
             // 피격 처리
             if (health > expectDamage) // 일반 피격
@@ -55,6 +62,7 @@ public class Enemy : MonoBehaviour
             {
                 health = 0;
                 isLive = false;
+                gameObject.tag = "Untagged";
                 anim.SetBool("isDie", true);
                 Destroy(gameObject, 1.0f);
             }
