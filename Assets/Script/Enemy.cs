@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public enum EnemyName { IceBlock }
+    public enum EnemyName { Spwaner, IceBlock }
     public Transform player;
     public Animator anim;
     
-
     [Header ("Enemy Info")]
     [SerializeField] EnemyName enemyName;
     public int maxHealth;
@@ -20,6 +19,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        player = GameManager.instance.player.transform;
 
         Init(); // 몬스터 정보 초기화 ( 체력 )
         StartCoroutine(Moving()); // 특수한 반복 동작 실행
@@ -27,7 +27,6 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        
         switch(enemyName)
         {
             case EnemyName.IceBlock:
@@ -48,10 +47,7 @@ public class Enemy : MonoBehaviour
             script.Hit();
             
             Destroy(bullet);
-            
-
-            
-
+           
             // 피격 처리
             if (health > expectDamage) // 일반 피격
             {
@@ -73,6 +69,9 @@ public class Enemy : MonoBehaviour
     {
         switch (enemyName)
         {
+            case EnemyName.Spwaner:
+                maxHealth = 1000;
+                break;
             case EnemyName.IceBlock:
                 maxHealth = 300;
                 break;

@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
             Instantiate(bullet, transform.position + new Vector3(0f, -0.35f, 0), transform.rotation);
         }
 
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.W) && rigid.velocity.y == 0 || Input.GetKeyDown(KeyCode.Space) && rigid.velocity.y == 0)
         {
             rigid.AddForce(new Vector2(0, 6.0f), ForceMode2D.Impulse);
             anim.SetBool("isJump", true);
