@@ -10,16 +10,16 @@ public class Enemy : MonoBehaviour
     public Animator anim;
     
     [Header ("Enemy Info")]
-    [SerializeField] EnemyName enemyName;
+    [SerializeField] public EnemyName enemyName;
     public int maxHealth;
     public int health;
     public bool isMove = true;
     public bool isLive = true;
 
     private void Awake()
-    {
-        anim = GetComponent<Animator>();
-        player = GameManager.instance.player.transform;
+    {   
+        if (enemyName != EnemyName.Spwaner) anim = GetComponent<Animator>();
+        if (enemyName != EnemyName.Spwaner) player = GameManager.instance.player.transform;
 
         Init(); // 몬스터 정보 초기화 ( 체력 )
         StartCoroutine(Moving()); // 특수한 반복 동작 실행
@@ -45,22 +45,32 @@ public class Enemy : MonoBehaviour
             Bullet script = bullet.GetComponent<Bullet>();
             int expectDamage = script.bulletDamage;
             script.Hit();
-            
+
             Destroy(bullet);
-           
+
             // 피격 처리
             if (health > expectDamage) // 일반 피격
             {
                 health -= expectDamage;
-                StartCoroutine(KnockBack());
+                if (enemyName != EnemyName.Spwaner) StartCoroutine(KnockBack());
             }
             else // 사망  
             {
                 health = 0;
                 isLive = false;
                 gameObject.tag = "Untagged";
-                anim.SetBool("isDie", true);
-                Destroy(gameObject, 1.0f);
+                if (enemyName != EnemyName.Spwaner)
+                {
+                    anim.SetBool("isDie", true);
+                    Destroy(gameObject, 1.0f);
+                }
+                else
+                {
+                    Destroy(gameObject);
+
+                    // 아래는 임시 하드코딩, 스테이지 변수 추가 및 코루틴 매개변수 도입 후 제거
+                    GameManager.instance.hud.StartCoroutine("Key");
+                }
             }
         }
     }
@@ -73,7 +83,7 @@ public class Enemy : MonoBehaviour
                 maxHealth = 1000;
                 break;
             case EnemyName.IceBlock:
-                maxHealth = 300;
+                maxHealth = 200;
                 break;
         }
 
