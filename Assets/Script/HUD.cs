@@ -12,7 +12,9 @@ public class HUD : MonoBehaviour
     public Text enemyNameText;
     public Slider enemyHpBar;
     public Text noticeText;
+    public Text desText;
     public CanvasGroup noticeAlpha;
+    public CanvasGroup desAlpha;
 
     [Header("Data")]
     public Sprite[] hpSprites;
@@ -53,10 +55,28 @@ public class HUD : MonoBehaviour
         }
     }
 
+    public IEnumerator DoorClose()
+    {
+        desText.text = "문이 굳게 잠겨 있습니다.";
+
+        for (int i = 0; i < 20;i++) 
+        {
+            desAlpha.alpha += 0.05f;
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        yield return new WaitForSeconds(0.6f);
+
+        for (int i = 0; i < 40; i++)
+        {
+            desAlpha.alpha -= 0.03f;
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+
     public IEnumerator Key()
     {
-        noticeText.text = "2층으로 이동할 수 있는\n<color=#50bcdf>포탈</color>이 개방되었습니다.";
-        Debug.Log("11.14 Log - '2층 이동'은 아직 미구현입니다.");
+        noticeText.text = "2층으로 이동할 수 있는\n<color=#50bcdf>문</color>이 개방되었습니다.";
 
         for (int i = 0 ; i < 30 ; i++)
         {

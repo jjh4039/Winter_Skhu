@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public Scanner scanner;
     public HUD hud;
 
+    public int clearIndex = 0;
+
     private void Awake()
     {
         instance = this;

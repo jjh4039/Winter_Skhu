@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
                 else
                 {
                     Destroy(gameObject);
-
+                    GameManager.instance.clearIndex++;
                     // 아래는 임시 하드코딩, 스테이지 변수 추가 및 코루틴 매개변수 도입 후 제거
                     GameManager.instance.hud.StartCoroutine("Key");
                 }
