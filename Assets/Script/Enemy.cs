@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public enum EnemyName { Spwaner, IceBlock }
+    public enum EnemyName { Spwaner, IceBlock, SnowMan }
     public Transform player;
     public Animator anim;
+    public Collider2D colider;
     
     [Header ("Enemy Info")]
     [SerializeField] public EnemyName enemyName;
@@ -16,10 +17,12 @@ public class Enemy : MonoBehaviour
     public bool isMove = true;
     public bool isLive = true;
 
-    private void Awake()
+    private void Start()
     {   
         if (enemyName != EnemyName.Spwaner) anim = GetComponent<Animator>();
         if (enemyName != EnemyName.Spwaner) player = GameManager.instance.player.transform;
+
+        colider = GetComponent<Collider2D>();
 
         Init(); // 몬스터 정보 초기화 ( 체력 )
         StartCoroutine(Moving()); // 특수한 반복 동작 실행
@@ -30,6 +33,7 @@ public class Enemy : MonoBehaviour
         switch(enemyName)
         {
             case EnemyName.IceBlock:
+            case EnemyName.SnowMan:
                 if (isMove && isLive) // 피격 당하지 않았고, 몬스터가 살아있다면
                     transform.Translate(Vector2.left * Time.deltaTime);
                 break;
@@ -52,12 +56,17 @@ public class Enemy : MonoBehaviour
             if (health > expectDamage) // 일반 피격
             {
                 health -= expectDamage;
-                if (enemyName != EnemyName.Spwaner) StartCoroutine(KnockBack());
+                if (enemyName != EnemyName.Spwaner)
+                {
+                    StopCoroutine(KnockBack());
+                    StartCoroutine(KnockBack());
+                }
             }
             else // 사망  
             {
                 health = 0;
                 isLive = false;
+                // colider.isTrigger = true;
                 gameObject.tag = "Untagged";
                 if (enemyName != EnemyName.Spwaner)
                 {
@@ -84,6 +93,9 @@ public class Enemy : MonoBehaviour
                 break;
             case EnemyName.IceBlock:
                 maxHealth = 200;
+                break;
+            case EnemyName.SnowMan:
+                maxHealth = 600;
                 break;
         }
 

@@ -52,6 +52,12 @@ public class HUD : MonoBehaviour
                 hpImage.sprite = hpSprites[0];
                 enemyNameText.text = "얼음 조각";
                 break;
+            case Enemy.EnemyName.SnowMan:
+                enemyNameText.color = Color.black;
+                hpText.color = Color.black;
+                hpImage.sprite = hpSprites[0];
+                enemyNameText.text = "거대 눈사람";
+                break;
         }
     }
 

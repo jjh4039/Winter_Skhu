@@ -43,8 +43,22 @@ public class Scanner : MonoBehaviour
         {
             targetEnemy = nearest.GetComponent<Enemy>();
             targetArrow.SetActive(true);
-            targetArrow.transform.position = new Vector3(nearest.transform.position.x, nearest.transform.position.y + 1.2f, nearest.transform.position.z);
+
+            // Arrow Set
+            switch (targetEnemy.enemyName)
+            {
+                case Enemy.EnemyName.Spwaner:
+                    targetArrow.transform.position = new Vector3(nearest.transform.position.x, nearest.transform.position.y + 1.4f, nearest.transform.position.z);
+                    break;
+                case Enemy.EnemyName.IceBlock:
+                    targetArrow.transform.position = new Vector3(nearest.transform.position.x, nearest.transform.position.y + 1.2f, nearest.transform.position.z);
+                    break;
+                case Enemy.EnemyName.SnowMan:
+                    targetArrow.transform.position = new Vector3(nearest.transform.position.x, nearest.transform.position.y + 2f, nearest.transform.position.z);
+                    break;
+            }
         }
+
         else targetArrow.SetActive(false);
     }
 }
