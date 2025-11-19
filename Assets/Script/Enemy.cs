@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public enum EnemyName { Spwaner, IceBlock, SnowMan }
-    public Transform player;
+    public enum EnemyName { Spwaner, IceBlock, SnowMan, RareSpawner, EpicSpawner}
     public Animator anim;
     public Collider2D colider;
     
@@ -16,11 +15,12 @@ public class Enemy : MonoBehaviour
     public int health;
     public bool isMove = true;
     public bool isLive = true;
+    public bool isSpwaner;
 
     private void Start()
     {   
-        if (enemyName != EnemyName.Spwaner) anim = GetComponent<Animator>();
-        if (enemyName != EnemyName.Spwaner) player = GameManager.instance.player.transform;
+        // 스포너가 아니면 애니메이션
+        if (!isSpwaner) anim = GetComponent<Animator>();
 
         colider = GetComponent<Collider2D>();
 
@@ -56,6 +56,8 @@ public class Enemy : MonoBehaviour
             if (health > expectDamage) // 일반 피격
             {
                 health -= expectDamage;
+
+                // 스포너가 아니면 넉백 애니메이션 및 기능 발동
                 if (enemyName != EnemyName.Spwaner)
                 {
                     StopCoroutine(KnockBack());
@@ -66,13 +68,16 @@ public class Enemy : MonoBehaviour
             {
                 health = 0;
                 isLive = false;
-                // colider.isTrigger = true;
                 gameObject.tag = "Untagged";
+
+                // 스포너가 아니면 사망 애니메이션
                 if (enemyName != EnemyName.Spwaner)
                 {
                     anim.SetBool("isDie", true);
                     Destroy(gameObject, 1.0f);
                 }
+
+                // 스포너 일 시 즉시 삭제 및 열쇠 상호작용
                 else
                 {
                     Destroy(gameObject);
@@ -123,7 +128,7 @@ public class Enemy : MonoBehaviour
         {
             case EnemyName.IceBlock:   
                 // 플레이어 추적
-                if (player.position.x < transform.position.x)
+                if (GameManager.instance.player.transform.position.x < transform.position.x)
                     transform.rotation = Quaternion.Euler(0, 0, 0);
                 else
                     transform.rotation = Quaternion.Euler(0, 180, 0);
