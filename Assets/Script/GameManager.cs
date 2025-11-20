@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public HUD hud;
 
     public int clearIndex = 0;
+    public int currentIndex = 1;
 
     private void Awake()
     {

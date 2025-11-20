@@ -21,7 +21,6 @@ public class Enemy : MonoBehaviour
     {   
         // 스포너가 아니면 애니메이션
         if (!isSpwaner) anim = GetComponent<Animator>();
-
         colider = GetComponent<Collider2D>();
 
         Init(); // 몬스터 정보 초기화 ( 체력 )
@@ -58,7 +57,7 @@ public class Enemy : MonoBehaviour
                 health -= expectDamage;
 
                 // 스포너가 아니면 넉백 애니메이션 및 기능 발동
-                if (enemyName != EnemyName.Spwaner)
+                if (!isSpwaner)
                 {
                     StopCoroutine(KnockBack());
                     StartCoroutine(KnockBack());
@@ -71,7 +70,7 @@ public class Enemy : MonoBehaviour
                 gameObject.tag = "Untagged";
 
                 // 스포너가 아니면 사망 애니메이션
-                if (enemyName != EnemyName.Spwaner)
+                if (!isSpwaner)
                 {
                     anim.SetBool("isDie", true);
                     Destroy(gameObject, 1.0f);
@@ -95,6 +94,12 @@ public class Enemy : MonoBehaviour
         {
             case EnemyName.Spwaner:
                 maxHealth = 1000;
+                break;
+            case EnemyName.RareSpawner:
+                maxHealth = 2000;
+                break;
+            case EnemyName.EpicSpawner:
+                maxHealth = 3000;
                 break;
             case EnemyName.IceBlock:
                 maxHealth = 200;
@@ -126,13 +131,13 @@ public class Enemy : MonoBehaviour
     {
         switch (enemyName)
         {
-            case EnemyName.IceBlock:   
+            case EnemyName.IceBlock:
+            case EnemyName.SnowMan:
                 // 플레이어 추적
                 if (GameManager.instance.player.transform.position.x < transform.position.x)
                     transform.rotation = Quaternion.Euler(0, 0, 0);
                 else
                     transform.rotation = Quaternion.Euler(0, 180, 0);
-
                 yield return new WaitForSeconds(0.5f);
                 StartCoroutine(Moving());
                 break;

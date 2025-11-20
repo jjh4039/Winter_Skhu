@@ -13,6 +13,7 @@ public class HUD : MonoBehaviour
     public Slider enemyHpBar;
     public Text noticeText;
     public Text desText;
+    public Text atkText;
     public CanvasGroup noticeAlpha;
     public CanvasGroup desAlpha;
 
@@ -32,7 +33,9 @@ public class HUD : MonoBehaviour
         {
             hpCanvas.alpha = 0;
         }
-    }
+
+        atkText.text = "Player Atk : " + GameManager.instance.player.atk;
+}
 
     public void EnemySet()
     {
@@ -45,6 +48,18 @@ public class HUD : MonoBehaviour
                 hpText.color = new Color(0f, 0.25f, 0.7f, 1f);
                 hpImage.sprite = hpSprites[1];
                 enemyNameText.text = "하급 생성기 ★";
+                break;
+            case Enemy.EnemyName.RareSpawner:
+                enemyNameText.color = new Color(1f, 0.43f, 0.25f, 1f);
+                hpText.color = new Color(1f, 0.43f, 0.25f, 1f);
+                hpImage.sprite = hpSprites[2];
+                enemyNameText.text = "중급 생성기 ★★";
+                break;
+            case Enemy.EnemyName.EpicSpawner:
+                // enemyNameText.color = new Color(0f, 0.25f, 0.7f, 1f); 색 추가
+                // hpText.color = new Color(0f, 0.25f, 0.7f, 1f);
+                hpImage.sprite = hpSprites[3];
+                enemyNameText.text = "상급 생성기 ★★★";
                 break;
             case Enemy.EnemyName.IceBlock:
                 enemyNameText.color = Color.black;
@@ -82,7 +97,7 @@ public class HUD : MonoBehaviour
 
     public IEnumerator Key()
     {
-        noticeText.text = "2층으로 이동할 수 있는\n<color=#50bcdf>문</color>이 개방되었습니다.";
+        noticeText.text = (GameManager.instance.clearIndex + 1)  + "층으로 이동할 수 있는\n<color=#50bcdf>문</color>이 개방되었습니다.";
 
         for (int i = 0 ; i < 30 ; i++)
         {

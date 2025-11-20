@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3e8878efc44e99f4ea711a67795e5c91
+guid: aa9af8e3cf810404a9a80c74c57283cc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 18
+  spritePixelsToUnits: 120
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,101 +100,68 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BossHp_0
+      name: Spawners_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 8
-        height: 8
+        x: 20
+        y: 0
+        width: 160
+        height: 190
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 1, y: 1, z: 1, w: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c34e950c6a5e5154e9ca63ec544ec011
-      internalID: -1025721271
+      spriteID: 3f996d79a6a9bcb4e82360e0d0ea95e9
+      internalID: 1781594662
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BossHp_1
+      name: Spawners_1
       rect:
         serializedVersion: 2
-        x: 11
-        y: 1
-        width: 8
-        height: 8
+        x: 220
+        y: 0
+        width: 160
+        height: 190
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 1, y: 1, z: 1, w: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 434f18cc7c8e14049b5fa98b41dde05a
-      internalID: 585272626
+      spriteID: 349a09a6062616c4d8925303180c108a
+      internalID: 1380348255
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BossHp_2
+      name: Spawners_2
       rect:
         serializedVersion: 2
-        x: 21
-        y: 1
-        width: 8
-        height: 8
+        x: 420
+        y: 0
+        width: 160
+        height: 190
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 1, y: 1, z: 1, w: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7987ceb1b6b2ff049bc56b435d158f32
-      internalID: 426018800
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BossHp_3
-      rect:
-        serializedVersion: 2
-        x: 31
-        y: 1
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 1, y: 1, z: 1, w: 1}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1cbc4ddc087e9b8429f9db26852d7ff6
-      internalID: -1587281433
+      spriteID: c5f57e4c7e3f5334694974c66e7638d8
+      internalID: -1759120029
       vertices: []
       indices: 
       edges: []
@@ -210,10 +177,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BossHp_1: 585272626
-      BossHp_2: 426018800
-      BossHp_0: -1025721271
-      BossHp_3: -1587281433
+      Spawners_0: 1781594662
+      Spawners_2: -1759120029
+      Spawners_1: 1380348255
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
