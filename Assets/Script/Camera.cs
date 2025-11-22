@@ -12,6 +12,18 @@ public class Camera : MonoBehaviour
         target = new Vector3(player.position.x, player.position.y, player.position.z -10);
 
         // 카메라 세팅
-        transform.position = new Vector3(Mathf.Clamp(target.x, -7.5f, 4f), Mathf.Clamp(target.y, -1.1f, 20f), target.z);
+        transform.position = new Vector3(Mathf.Clamp(target.x, -7.5f, 4f), Yset(), target.z);
+    }
+
+    public float Yset()
+    {
+        switch (GameManager.instance.currentIndex) {
+            case 1:
+                return -1.1f;
+            case 2:
+                return 9.45f;
+            default:
+                return 0;
+        }
     }
 }

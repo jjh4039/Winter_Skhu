@@ -74,6 +74,9 @@ public class Enemy : MonoBehaviour
                 {
                     anim.SetBool("isDie", true);
                     Destroy(gameObject, 1.0f);
+
+                    GameManager.instance.player.atk++;
+                    GameManager.instance.hud.StartCoroutine("AtkUp", 0);
                 }
 
                 // 스포너 일 시 즉시 삭제 및 열쇠 상호작용
@@ -81,6 +84,9 @@ public class Enemy : MonoBehaviour
                 {
                     Destroy(gameObject);
                     GameManager.instance.clearIndex++;
+
+                    GameManager.instance.player.atk += 10;
+                    GameManager.instance.hud.StartCoroutine("AtkUp", 1);
                     // 아래는 임시 하드코딩, 스테이지 변수 추가 및 코루틴 매개변수 도입 후 제거
                     GameManager.instance.hud.StartCoroutine("Key");
                 }

@@ -14,8 +14,12 @@ public class HUD : MonoBehaviour
     public Text noticeText;
     public Text desText;
     public Text atkText;
+    public Text atkDesText;
     public CanvasGroup noticeAlpha;
     public CanvasGroup desAlpha;
+    public CanvasGroup atkDesAlpha;
+    public CanvasGroup alpha;
+    public GameObject[] spawners;
 
     [Header("Data")]
     public Sprite[] hpSprites;
@@ -95,6 +99,33 @@ public class HUD : MonoBehaviour
         }
     }
 
+    public IEnumerator AtkUp(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                atkDesText.text = "몬스터 처치 +1";
+                break;
+            case 1:
+                atkDesText.text = "스테이지 클리어 +10";
+                break;
+        }
+
+        for (int i = 0; i < 20; i++) {
+            atkDesAlpha.alpha += 0.05f;
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        yield return new WaitForSeconds(0.2f);
+
+        for (int i = 0; i < 20; i++)
+        {
+            atkDesAlpha.alpha -= 0.05f;
+            yield return new WaitForSeconds(0.01f);
+        }               
+    }
+
+
     public IEnumerator Key()
     {
         noticeText.text = (GameManager.instance.clearIndex + 1)  + "층으로 이동할 수 있는\n<color=#50bcdf>문</color>이 개방되었습니다.";
@@ -110,6 +141,31 @@ public class HUD : MonoBehaviour
         for (int i = 0; i < 40; i++)
         {
             noticeAlpha.alpha -= 0.03f;
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+
+    public IEnumerator Up(int index)
+    {
+        for (int i = 0; i < 30; i++) 
+        {
+        alpha.alpha += 0.04f;
+        yield return new WaitForSeconds(0.01f);
+        }
+
+        GameManager.instance.currentIndex = index + 2;
+
+        switch (index)
+        {
+            case 0:
+                GameManager.instance.player.transform.position = new Vector3(-10f, 6.5f, 0f);
+                Instantiate(spawners[0], new Vector3(11.79f, 6.36f, 0f), Quaternion.identity);
+                break;
+        }
+
+        for (int i = 0; i < 30; i++)
+        {
+            alpha.alpha -= 0.04f;
             yield return new WaitForSeconds(0.01f);
         }
     }

@@ -18,13 +18,23 @@ public class Door : MonoBehaviour
 
     public void Update()
     {
-        if (GameManager.instance.clearIndex >= doorIndex) // 문 열림
+        if (GameManager.instance.clearIndex >= doorIndex + 1) // 문 열림
         {
             spriteRenderer.sprite = doorSprites[1];
 
             if (Input.GetKeyDown(KeyCode.E) && isInteraction == true)
             {
-                Debug.Log("다음 스테이지");
+                switch (doorIndex)
+                {
+                    case 0:
+                        isInteraction = false;
+                        GameManager.instance.hud.StartCoroutine("Up", 0);
+                        
+                        break;
+                    case 1:
+                        GameManager.instance.currentIndex = 3;
+                        break;
+                }
             }
         }
         else // 문 닫힘

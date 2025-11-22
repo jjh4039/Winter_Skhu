@@ -8,7 +8,6 @@ public class Spawner : MonoBehaviour
     [SerializeField] GameObject[] enemyPrefabs;
     [SerializeField] int spawnerIndex;
 
-
     void Awake()
     {
         StartCoroutine(Spawn(spawnerIndex));
