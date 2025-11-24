@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public enum EnemyName { Spwaner, IceBlock, SnowMan, RareSpawner, EpicSpawner}
+    public enum EnemyName { Spwaner, IceBlock, SnowMan, EpicSpawner, Boss}
     public Animator anim;
     public Collider2D colider;
     public GameObject hitGameObject;
@@ -102,17 +102,17 @@ public class Enemy : MonoBehaviour
             case EnemyName.Spwaner:
                 maxHealth = 1000;
                 break;
-            case EnemyName.RareSpawner:
-                maxHealth = 2000;
-                break;
             case EnemyName.EpicSpawner:
-                maxHealth = 3000;
+                maxHealth = 2000;
                 break;
             case EnemyName.IceBlock:
                 maxHealth = 200;
                 break;
             case EnemyName.SnowMan:
                 maxHealth = 600;
+                break;
+            case EnemyName.Boss:
+                maxHealth = 3000;
                 break;
         }
 
@@ -146,6 +146,24 @@ public class Enemy : MonoBehaviour
                 else
                     transform.rotation = Quaternion.Euler(0, 180, 0);
                 yield return new WaitForSeconds(0.5f);
+                StartCoroutine(Moving());
+                break;
+            case EnemyName.Boss:
+                yield return new WaitForSeconds(0.1f);
+
+                for (int i = 0; i < 20; i++)
+                {
+                    transform.position = new Vector2(transform.position.x, transform.position.y - 0.01f);
+                    yield return new WaitForSeconds(0.02f);
+                }
+
+                yield return new WaitForSeconds(0.1f);
+
+                for (int i = 0; i < 20; i++)
+                {
+                    transform.position = new Vector2(transform.position.x, transform.position.y + 0.01f);
+                    yield return new WaitForSeconds(0.02f);
+                }
                 StartCoroutine(Moving());
                 break;
         }

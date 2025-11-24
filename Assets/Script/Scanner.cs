@@ -48,6 +48,7 @@ public class Scanner : MonoBehaviour
             switch (targetEnemy.enemyName)
             {
                 case Enemy.EnemyName.Spwaner:
+                case Enemy.EnemyName.EpicSpawner:
                     targetArrow.transform.position = new Vector3(nearest.transform.position.x, nearest.transform.position.y + 1.4f, nearest.transform.position.z);
                     break;
                 case Enemy.EnemyName.IceBlock:
@@ -55,6 +56,9 @@ public class Scanner : MonoBehaviour
                     break;
                 case Enemy.EnemyName.SnowMan:
                     targetArrow.transform.position = new Vector3(nearest.transform.position.x, nearest.transform.position.y + 2f, nearest.transform.position.z);
+                    break;
+                case Enemy.EnemyName.Boss:
+                    targetArrow.transform.position = new Vector3(nearest.transform.position.x - 0.02f, nearest.transform.position.y + 2.35f, nearest.transform.position.z);
                     break;
             }
         }

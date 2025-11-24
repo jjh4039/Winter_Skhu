@@ -63,17 +63,17 @@ public class HUD : MonoBehaviour
                 hpImage.sprite = hpSprites[1];
                 enemyNameText.text = "하급 생성기 ★";
                 break;
-            case Enemy.EnemyName.RareSpawner:
+            case Enemy.EnemyName.EpicSpawner:
                 enemyNameText.color = new Color(1f, 0.3f, 0.2f, 1f);
                 hpText.color = new Color(1f, 0.3f, 0.2f, 1f);
                 hpImage.sprite = hpSprites[2];
-                enemyNameText.text = "중급 생성기 ★★";
+                enemyNameText.text = "상급 생성기 ★★";
                 break;
-            case Enemy.EnemyName.EpicSpawner:
-                // enemyNameText.color = new Color(0f, 0.25f, 0.7f, 1f); 색 추가
-                // hpText.color = new Color(0f, 0.25f, 0.7f, 1f);
-                hpImage.sprite = hpSprites[3];
-                enemyNameText.text = "상급 생성기 ★★★";
+            case Enemy.EnemyName.Boss:
+                enemyNameText.color = new Color(0.4f, 0.4f, 0.4f, 1f);
+                hpText.color = new Color(0.4f, 0.4f, 0.4f, 1f);
+                hpImage.sprite = hpSprites[4];
+                enemyNameText.text = "얼음 코어 ★★★";
                 break;
             case Enemy.EnemyName.IceBlock:
                 enemyNameText.color = Color.black;
