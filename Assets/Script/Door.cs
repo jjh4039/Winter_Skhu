@@ -24,17 +24,8 @@ public class Door : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E) && isInteraction == true)
             {
-                switch (doorIndex)
-                {
-                    case 0:
-                        isInteraction = false;
-                        GameManager.instance.hud.StartCoroutine("Up", 0);
-                        
-                        break;
-                    case 1:
-                        GameManager.instance.currentIndex = 3;
-                        break;
-                }
+                  isInteraction = false;
+                  GameManager.instance.hud.StartCoroutine("Up", doorIndex);
             }
         }
         else // ¹® ´ÝÈû

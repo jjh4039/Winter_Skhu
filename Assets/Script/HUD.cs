@@ -145,6 +145,9 @@ public class HUD : MonoBehaviour
             case 2:
                 floorSubText.text = "얼음 성";
                 break;
+            case 3:
+                floorSubText.text = "최상층";
+                break;
             default:
                 break;
         }
@@ -200,6 +203,10 @@ public class HUD : MonoBehaviour
             case 0:
                 GameManager.instance.player.transform.position = new Vector3(-10f, 6.5f, 0f);
                 Instantiate(spawners[0], new Vector3(11.79f, 6.36f, 0f), Quaternion.identity);
+                break;
+            case 1:
+                GameManager.instance.player.transform.position = new Vector3(-6f, 16.5f, 0f);
+                // 보스 생성
                 break;
         }
 
