@@ -8,14 +8,18 @@ public class HUD : MonoBehaviour
     [Header("# Component")]
     public CanvasGroup hpCanvas;
     public Text hpText;
+    public Text playerHpText;
     public Image hpImage;
     public Text enemyNameText;
     public Slider enemyHpBar;
     public Text noticeText;
     public Text desText;
+    public Text floorText;
+    public Text floorSubText;
     public Text atkText;
     public Text atkDesText;
     public CanvasGroup noticeAlpha;
+    public CanvasGroup floorAlpha;
     public CanvasGroup desAlpha;
     public CanvasGroup atkDesAlpha;
     public CanvasGroup alpha;
@@ -23,6 +27,11 @@ public class HUD : MonoBehaviour
 
     [Header("Data")]
     public Sprite[] hpSprites;
+
+    public void Start()
+    {
+        StartCoroutine("Floor");
+    }
 
     public void Update()
     {
@@ -38,7 +47,8 @@ public class HUD : MonoBehaviour
             hpCanvas.alpha = 0;
         }
 
-        atkText.text = "Player Atk : " + GameManager.instance.player.atk;
+        atkText.text = "Atk : " + GameManager.instance.player.atk;
+        playerHpText.text = "Hp : " + GameManager.instance.player.currentHp + " / " + GameManager.instance.player.mayHp;
 }
 
     public void EnemySet()
@@ -54,8 +64,8 @@ public class HUD : MonoBehaviour
                 enemyNameText.text = "하급 생성기 ★";
                 break;
             case Enemy.EnemyName.RareSpawner:
-                enemyNameText.color = new Color(1f, 0.43f, 0.25f, 1f);
-                hpText.color = new Color(1f, 0.43f, 0.25f, 1f);
+                enemyNameText.color = new Color(1f, 0.3f, 0.2f, 1f);
+                hpText.color = new Color(1f, 0.3f, 0.2f, 1f);
                 hpImage.sprite = hpSprites[2];
                 enemyNameText.text = "중급 생성기 ★★";
                 break;
@@ -125,6 +135,36 @@ public class HUD : MonoBehaviour
         }               
     }
 
+    public IEnumerator Floor()
+    {
+        switch (GameManager.instance.currentIndex)
+        {
+            case 1:
+                floorSubText.text = "얼음 연못";
+                break;
+            case 2:
+                floorSubText.text = "얼음 성";
+                break;
+            default:
+                break;
+        }
+
+        floorText.text = GameManager.instance.currentIndex + "층";
+
+        for (int i = 0; i < 30; i++)
+        {
+            floorAlpha.alpha += 0.04f;
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        for (int i = 0; i < 40; i++)
+        {
+            floorAlpha.alpha -= 0.03f;
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
 
     public IEnumerator Key()
     {
@@ -168,5 +208,7 @@ public class HUD : MonoBehaviour
             alpha.alpha -= 0.04f;
             yield return new WaitForSeconds(0.01f);
         }
+
+        StartCoroutine("Floor");
     }
 }

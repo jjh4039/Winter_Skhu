@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public enum EnemyName { Spwaner, IceBlock, SnowMan, RareSpawner, EpicSpawner}
     public Animator anim;
     public Collider2D colider;
+    public GameObject hitGameObject;
     
     [Header ("Enemy Info")]
     [SerializeField] public EnemyName enemyName;
@@ -68,6 +69,7 @@ public class Enemy : MonoBehaviour
                 health = 0;
                 isLive = false;
                 gameObject.tag = "Untagged";
+                hitGameObject.tag = "Untagged";
 
                 // 스포너가 아니면 사망 애니메이션
                 if (!isSpwaner)
@@ -87,7 +89,6 @@ public class Enemy : MonoBehaviour
 
                     GameManager.instance.player.atk += 10;
                     GameManager.instance.hud.StartCoroutine("AtkUp", 1);
-                    // 아래는 임시 하드코딩, 스테이지 변수 추가 및 코루틴 매개변수 도입 후 제거
                     GameManager.instance.hud.StartCoroutine("Key");
                 }
             }
