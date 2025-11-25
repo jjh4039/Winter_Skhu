@@ -206,7 +206,7 @@ public class HUD : MonoBehaviour
                 break;
             case 1:
                 GameManager.instance.player.transform.position = new Vector3(-6f, 16.5f, 0f);
-                // 보스 생성
+                Instantiate(spawners[1], new Vector3(0f, 19f, 0f), Quaternion.identity);
                 break;
         }
 

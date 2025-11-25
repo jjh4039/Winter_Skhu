@@ -3005,6 +3005,7 @@ MonoBehaviour:
   alpha: {fileID: 426335540}
   spawners:
   - {fileID: 8901786905529681119, guid: 6053277167c2a17408faca2e03fe8551, type: 3}
+  - {fileID: 1334901060779135067, guid: 6eae7990cf50bf644b197457eeefbe10, type: 3}
   hpSprites:
   - {fileID: -1722126508, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   - {fileID: -1025721271, guid: 3e8878efc44e99f4ea711a67795e5c91, type: 3}
