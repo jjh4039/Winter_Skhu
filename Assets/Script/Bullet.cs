@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
         // 총알 데미지 공식
         bulletDamage = GameManager.instance.player.atk;
 
-        rigid = GetComponent<Rigidbody2D>();
+        rigid = GetComponent<Rigidbody2D>();    
 
         rigid.AddForce(transform.right * 1000 * Time.fixedDeltaTime, ForceMode2D.Impulse);
         Destroy(gameObject, 3.0f);

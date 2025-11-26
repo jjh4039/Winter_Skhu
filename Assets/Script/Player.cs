@@ -70,14 +70,19 @@ public class Player : MonoBehaviour
     {
         if (collision.CompareTag("Enemy") && isHit == false)
         {
-            StartCoroutine("Hit");
+            StartCoroutine("Hit", 5);
+        }
+
+        if (collision.CompareTag("EnemyBullet") && isHit == false)
+        {
+            StartCoroutine("Hit", 3);
         }
     }
 
-    IEnumerator Hit()
+    IEnumerator Hit(int damage)
     {
         isHit = true;
-        currentHp -= 5;
+        currentHp -= damage;
         Debug.Log(currentHp + " / " + mayHp);
 
         for (int i = 0;i < 2; i++) {

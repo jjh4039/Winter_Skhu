@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -171,20 +172,36 @@ public class HUD : MonoBehaviour
 
     public IEnumerator Key()
     {
-        noticeText.text = (GameManager.instance.clearIndex + 1)  + "층으로 이동할 수 있는\n<color=#50bcdf>문</color>이 개방되었습니다.";
-
-        for (int i = 0 ; i < 30 ; i++)
+        // 보스 처치
+        if (GameManager.instance.clearIndex == 3)
         {
-            noticeAlpha.alpha += 0.04f;
-            yield return new WaitForSeconds(0.01f);
+            Time.timeScale = 0.2f;
+            yield return new WaitForSeconds(0.5f);
+
+            for (int i = 0; i < 100; i++)
+            {
+                alpha.alpha += 0.01f;
+                yield return new WaitForSeconds(0.002f);
+            }
+
         }
-
-        yield return new WaitForSeconds(2f);
-
-        for (int i = 0; i < 40; i++)
+        else
         {
-            noticeAlpha.alpha -= 0.03f;
-            yield return new WaitForSeconds(0.01f);
+            noticeText.text = (GameManager.instance.clearIndex + 1) + "층으로 이동할 수 있는\n<color=#50bcdf>문</color>이 개방되었습니다.";
+
+            for (int i = 0; i < 30; i++)
+            {
+                noticeAlpha.alpha += 0.04f;
+                yield return new WaitForSeconds(0.01f);
+            }
+
+            yield return new WaitForSeconds(2f);
+
+            for (int i = 0; i < 40; i++)
+            {
+                noticeAlpha.alpha -= 0.03f;
+                yield return new WaitForSeconds(0.01f);
+            }
         }
     }
 

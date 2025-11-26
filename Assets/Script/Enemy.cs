@@ -84,12 +84,11 @@ public class Enemy : MonoBehaviour
                 // 스포너 일 시 즉시 삭제 및 열쇠 상호작용
                 else
                 {
-                    Destroy(gameObject);
                     GameManager.instance.clearIndex++;
-
                     GameManager.instance.player.atk += 10;
                     GameManager.instance.hud.StartCoroutine("AtkUp", 1);
                     GameManager.instance.hud.StartCoroutine("Key");
+                    Destroy(gameObject);
                 }
             }
         }
@@ -149,22 +148,6 @@ public class Enemy : MonoBehaviour
                 StartCoroutine(Moving());
                 break;
             case EnemyName.Boss:
-                yield return new WaitForSeconds(0.1f);
-
-                for (int i = 0; i < 20; i++)
-                {
-                    transform.position = new Vector2(transform.position.x, transform.position.y - 0.01f);
-                    yield return new WaitForSeconds(0.02f);
-                }
-
-                yield return new WaitForSeconds(0.1f);
-
-                for (int i = 0; i < 20; i++)
-                {
-                    transform.position = new Vector2(transform.position.x, transform.position.y + 0.01f);
-                    yield return new WaitForSeconds(0.02f);
-                }
-                StartCoroutine(Moving());
                 break;
         }
     }
