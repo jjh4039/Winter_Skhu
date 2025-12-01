@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     public Rigidbody2D rigid;
     public int bulletDamage;
     public GameObject hitParticlePrefab;
+    public bool isHit = false;
 
     private void Start()
     {

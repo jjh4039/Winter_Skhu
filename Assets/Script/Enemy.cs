@@ -55,7 +55,12 @@ public class Enemy : MonoBehaviour
             // 피격 처리
             if (health > expectDamage) // 일반 피격
             {
-                health -= expectDamage;
+                if (!script.isHit)
+                {
+                    health -= expectDamage;
+                    script.isHit = true;
+                }
+                else return;
 
                 // 스포너가 아니면 넉백 애니메이션 및 기능 발동
                 if (!isSpwaner)
@@ -66,6 +71,8 @@ public class Enemy : MonoBehaviour
             }
             else // 사망  
             {
+                if (script.isHit) return;
+
                 health = 0;
                 isLive = false;
                 gameObject.tag = "Untagged";

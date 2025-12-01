@@ -32,6 +32,7 @@ public class HUD : MonoBehaviour
     public void Start()
     {
         StartCoroutine("Floor");
+        StartCoroutine("FadeIn");
     }
 
     public void Update()
@@ -202,6 +203,15 @@ public class HUD : MonoBehaviour
                 noticeAlpha.alpha -= 0.03f;
                 yield return new WaitForSeconds(0.01f);
             }
+        }
+    }
+    public IEnumerator FadeIn()
+    {
+        alpha.alpha = 1f;
+        for (int i = 0; i < 40; i++)
+        {
+            alpha.alpha -= 0.025f;
+            yield return new WaitForSeconds(0.02f);
         }
     }
 
