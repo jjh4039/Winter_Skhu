@@ -1469,7 +1469,7 @@ MonoBehaviour:
   bullet: {fileID: 171647973227945509, guid: de136933eab153343a0f6e11d3bb0eb7, type: 3}
   spriteRenderer: {fileID: 0}
   atk: 80
-  mayHp: 30
+  mayHp: 50
   currentHp: 0
   isHit: 0
 --- !u!95 &618720803
