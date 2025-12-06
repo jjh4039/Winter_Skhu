@@ -25,6 +25,7 @@ public class HUD : MonoBehaviour
     public CanvasGroup atkDesAlpha;
     public CanvasGroup alpha;
     public GameObject[] spawners;
+    public GameObject doorSound;
 
     [Header("Data")]
     public Sprite[] hpSprites;
@@ -173,7 +174,7 @@ public class HUD : MonoBehaviour
 
     public IEnumerator Key()
     {
-        // 보스 처치
+        // 보스 처치 -> 엔딩
         if (GameManager.instance.clearIndex == 3)
         {
             Time.timeScale = 0.2f;
@@ -185,6 +186,7 @@ public class HUD : MonoBehaviour
                 yield return new WaitForSeconds(0.002f);
             }
 
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Ending");
         }
         else
         {
@@ -217,6 +219,8 @@ public class HUD : MonoBehaviour
 
     public IEnumerator Up(int index)
     {
+        GameObject sound = Instantiate(doorSound, transform.position, Quaternion.identity);
+
         for (int i = 0; i < 30; i++) 
         {
         alpha.alpha += 0.04f;
@@ -243,6 +247,7 @@ public class HUD : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
 
+        Destroy(sound);
         StartCoroutine("Floor");
     }
 }

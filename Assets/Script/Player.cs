@@ -64,6 +64,11 @@ public class Player : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         else anim.SetBool("isRun", false);
+
+        if(currentHp <= 0)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -83,7 +88,6 @@ public class Player : MonoBehaviour
     {
         isHit = true;
         currentHp -= damage;
-        Debug.Log(currentHp + " / " + mayHp);
 
         for (int i = 0;i < 2; i++) {
             spriteRenderer.color = Color.red;

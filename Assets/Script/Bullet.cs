@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     public int bulletDamage;
     public GameObject hitParticlePrefab;
     public bool isHit = false;
+    public GameObject hitSound;
 
     private void Start()
     {
@@ -23,6 +24,8 @@ public class Bullet : MonoBehaviour
     public void Hit()
     {
         GameObject Particle = Instantiate(hitParticlePrefab, transform.position, Quaternion.identity);
+        GameObject hit = Instantiate(hitSound, transform.position, Quaternion.identity);
         Destroy(Particle, 2.0f);
+        Destroy(hit, 1.0f);
     }
 }

@@ -52,6 +52,7 @@ public class Enemy : MonoBehaviour
 
             Destroy(bullet);
 
+
             // 피격 처리
             if (health > expectDamage) // 일반 피격
             {

@@ -139,3 +139,5 @@ MonoBehaviour:
   rigid: {fileID: 0}
   bulletDamage: 0
   hitParticlePrefab: {fileID: 6409765824655308698, guid: c28bd05f317d40549bb7ed4955afeb2d, type: 3}
+  isHit: 0
+  hitSound: {fileID: 6274045792119213151, guid: aa569de25a4f0cb4d9937bb1d0954ec7, type: 3}
